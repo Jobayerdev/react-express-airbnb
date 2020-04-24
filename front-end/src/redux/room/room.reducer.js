@@ -28,17 +28,19 @@ const roomReducer = (state = INITIAL_STATE, action) => {
 				loading: false,
 			};
 		case SORT_BY_PRICE:
-			return {
+			return {...state,
 				allRooms: state.allRooms.sort(function (a, b) {
 					return b.price - a.price;
 				}),
 			};
 		case SORT_BY_CANCEL_STATUS:
 			return {
+				...state,
 				allRooms: state.allRooms.filter((x) => x.cancelAvailable !== false),
 			};
 		case CLEAR_SORT:
 			return {
+...state,
 				allRooms: JSON.parse(localStorage.getItem("rooms")),
 			};
 		default:
